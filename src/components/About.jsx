@@ -52,20 +52,20 @@ const About = () => {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.1 }}
         className="container-custom"
       >
-        <motion.div variants={fadeIn} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+        <motion.div variants={fadeIn} className="text-center mb-12 md:mb-16 px-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
             About <span className="text-black dark:text-white">Me</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-light">
+          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-light">
             Full-stack and data science student passionate about modern web applications and machine learning.
           </p>
         </motion.div>
 
-        <motion.div variants={slideUp} className="max-w-4xl mx-auto mb-16 text-left">
-          <div className="space-y-6 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+        <motion.div variants={slideUp} className="max-w-4xl mx-auto mb-12 md:mb-16 text-left px-4">
+          <div className="space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-300">
             <p className="font-light">
               I'm a passionate full-stack developer and data science enthusiast with a strong foundation in modern web technologies and machine learning. I love creating innovative solutions that bridge the gap between user experience and data-driven insights.
             </p>
@@ -78,33 +78,33 @@ const About = () => {
           </div>
         </motion.div>
 
-        <motion.div variants={fadeIn} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+        <motion.div variants={fadeIn} className="text-center mb-12 md:mb-16 px-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
             Tech <span className="text-black dark:text-white">Stack</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-light">
+          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-light">
             Technologies and tools I work with to build innovative solutions.
           </p>
         </motion.div>
 
-        <div className="space-y-12">
-          <motion.div variants={fadeIn} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
-            <h3 className="text-2xl font-bold mb-8 text-center tracking-tight text-gray-900 dark:text-white">
+        <div className="space-y-8 md:space-y-12 px-4">
+          <motion.div variants={fadeIn} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 md:p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
+            <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center tracking-tight text-gray-900 dark:text-white">
               Languages
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 md:gap-6">
               {languages.map((skill, i) => (
                 <motion.div
                   key={skill.name}
                   variants={fadeIn}
                   custom={i}
-                  className="flex flex-col items-center p-4 rounded-xl transition-all duration-300 group shadow-sm hover:shadow-lg bg-white dark:bg-dark-custom hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-100 dark:border-gray-600"
+                  className="flex flex-col items-center p-2 md:p-4 rounded-xl transition-all duration-300 group shadow-sm hover:shadow-lg bg-white dark:bg-dark-custom hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-100 dark:border-gray-600"
                   whileHover={{ scale: 1.05, y: -3 }}
                 >
-                  <div className="w-12 h-12 mb-3 group-hover:scale-110 transition-transform">
+                  <div className="w-8 h-8 md:w-12 md:h-12 mb-2 md:mb-3 group-hover:scale-110 transition-transform">
                     <img src={skill.logo} alt={skill.name} className="w-full h-full object-contain" />
                   </div>
-                  <span className="font-medium text-sm text-center tracking-wide text-gray-900 dark:text-white">
+                  <span className="font-medium text-xs md:text-sm text-center tracking-wide text-gray-900 dark:text-white">
                     {skill.name}
                   </span>
                 </motion.div>
@@ -112,11 +112,11 @@ const About = () => {
             </div>
           </motion.div>
 
-          <motion.div variants={fadeIn} custom={1} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
-            <h3 className="text-2xl font-bold mb-8 text-center tracking-tight text-gray-900 dark:text-white">
+          <motion.div variants={fadeIn} custom={1} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 md:p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
+            <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center tracking-tight text-gray-900 dark:text-white">
               Environments
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
               {environments.map((skill, i) => (
                 <motion.div
                   key={skill.name}
@@ -136,11 +136,11 @@ const About = () => {
             </div>
           </motion.div>
 
-          <motion.div variants={fadeIn} custom={2} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
-            <h3 className="text-2xl font-bold mb-8 text-center tracking-tight text-gray-900 dark:text-white">
+          <motion.div variants={fadeIn} custom={2} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 md:p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
+            <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center tracking-tight text-gray-900 dark:text-white">
               Frontend Development
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
               {frontendSkills.map((skill, i) => (
                 <motion.div
                   key={skill.name}
@@ -160,11 +160,11 @@ const About = () => {
             </div>
           </motion.div>
 
-          <motion.div variants={fadeIn} custom={3} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
-            <h3 className="text-2xl font-bold mb-8 text-center tracking-tight text-gray-900 dark:text-white">
+          <motion.div variants={fadeIn} custom={3} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 md:p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
+            <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center tracking-tight text-gray-900 dark:text-white">
               Backend Development
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
               {backendSkills.map((skill, i) => (
                 <motion.div
                   key={skill.name}
@@ -184,11 +184,11 @@ const About = () => {
             </div>
           </motion.div>
 
-          <motion.div variants={fadeIn} custom={4} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
-            <h3 className="text-2xl font-bold mb-8 text-center tracking-tight text-gray-900 dark:text-white">
+          <motion.div variants={fadeIn} custom={4} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 md:p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
+            <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center tracking-tight text-gray-900 dark:text-white">
               Tools & Technologies
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
               {toolsSkills.map((skill, i) => (
                 <motion.div
                   key={skill.name}
@@ -208,11 +208,11 @@ const About = () => {
             </div>
           </motion.div>
 
-          <motion.div variants={fadeIn} custom={5} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
-            <h3 className="text-2xl font-bold mb-8 text-center tracking-tight text-gray-900 dark:text-white">
+          <motion.div variants={fadeIn} custom={5} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 md:p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
+            <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center tracking-tight text-gray-900 dark:text-white">
               AI Tools
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
               {aiTools.map((tool, i) => (
                 <motion.div
                   key={tool.name}

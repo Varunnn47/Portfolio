@@ -9,7 +9,7 @@ import './App.css'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <BrowserRouter basename={import.meta.env.DEV ? '/' : '/Portfolio/'}>
+      <BrowserRouter basename={window.location.pathname.includes('/Portfolio') ? '/Portfolio' : '/'}>
         <App />
       </BrowserRouter>
     </ErrorBoundary>

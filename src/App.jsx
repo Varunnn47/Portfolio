@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Projects from './components/Projects'
 import About from './components/About'
+import AboutSimple from './components/AboutSimple'
 
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -25,6 +26,14 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={
+            <main>
+              <Hero />
+              <About />
+              <Projects addToast={addToast} />
+              <Contact addToast={addToast} />
+            </main>
+          } />
+          <Route path="/Portfolio" element={
             <main>
               <Hero />
               <About />
