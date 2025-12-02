@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/Portfolio/new-profile.png" type="image/png">
-    <link rel="shortcut icon" href="/Portfolio/new-profile.png" type="image/png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/Portfolio/new-profile.png" />
+    <link rel="icon" href="./new-profile.png" type="image/png">
+    <link rel="shortcut icon" href="./new-profile.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./new-profile.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- SEO Meta Tags -->
@@ -27,18 +27,18 @@
     <meta property="og:description" content="Professional portfolio showcasing web development projects and skills" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://yourusername.github.io/Portfolio/" />
-    <meta property="og:image" content="/Portfolio/new-profile.png" />
+    <meta property="og:image" content="./new-profile.png" />
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="varun Goud" />
     <meta name="twitter:description" content="Professional portfolio showcasing web development projects and skills" />
-    <meta name="twitter:image" content="/Portfolio/new-profile.png" />
+    <meta name="twitter:image" content="./new-profile.png" />
     
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#2563eb" />
-    <link rel="manifest" href="/Portfolio/manifest.json" />
-    <link rel="apple-touch-icon" href="/Portfolio/icon-192.png" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="./icon-192.png" />
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
@@ -77,7 +77,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
+          navigator.serviceWorker.register('./sw.js')
             .then(registration => console.log('SW registered: ', registration))
             .catch(registrationError => console.log('SW registration failed: ', registrationError));
         });
