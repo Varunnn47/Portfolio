@@ -6,8 +6,13 @@ class ErrorBoundary extends Component {
     this.state = { hasError: false }
   }
 
-  static getDerivedStateFromError() {
+  static getDerivedStateFromError(error) {
+    console.error('Error caught by boundary:', error)
     return { hasError: true }
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('Error details:', error, errorInfo)
   }
 
   render() {

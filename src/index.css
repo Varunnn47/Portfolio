@@ -1,94 +1,21 @@
-@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
-  :root {
-    --color-primary: #000000;
-    --color-primary-dark: #1F2937;
-    --color-text: #111111;
-    --color-bg: #FFFFFF;
-    --color-gray: #6B7280;
-    --color-gray-light: #F3F4F6;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
   html {
     scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
-
+  
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    line-height: 1.6;
-  }
-}
-
-@layer components {
-  .font-heading {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
-
-  .font-body {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-  }
-
-  .container-custom {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-
-  .btn-primary {
-    @apply bg-black text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:bg-gray-800 hover:shadow-lg hover:scale-105;
-  }
-
-  .btn-secondary {
-    @apply border-2 border-black text-black px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:bg-black hover:text-white hover:shadow-lg;
-  }
-
-  .card {
-    @apply bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 overflow-hidden;
-  }
-
-  .section-padding {
-    @apply py-20 md:py-32;
-  }
-
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  }
-
-  .animation-delay-200 {
-    animation-delay: 200ms;
-  }
-
-  .animation-delay-400 {
-    animation-delay: 400ms;
   }
 }

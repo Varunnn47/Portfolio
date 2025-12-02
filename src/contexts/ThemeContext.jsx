@@ -12,15 +12,25 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') === 'dark' ||
-        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    }
-    return false
+    const savedTheme = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    return savedTheme ? savedTheme === 'dark' : prefersDark
   })
 
+  // Apply theme to DOM on mount
   useEffect(() => {
-    const root = window.document.documentElement
+    const root = document.documentElement
+    if (isDark) {
+      root.classList.add('dark')
+    } else {
+      root.classList.remove('dark')
+    }
+  }, [isDark])
+
+  // Handle theme changes
+  useEffect(() => {
+    const root = document.documentElement
+    
     if (isDark) {
       root.classList.add('dark')
       localStorage.setItem('theme', 'dark')
@@ -30,7 +40,9 @@ export const ThemeProvider = ({ children }) => {
     }
   }, [isDark])
 
-  const toggleTheme = () => setIsDark(!isDark)
+  const toggleTheme = () => {
+    setIsDark(prev => !prev)
+  }
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>

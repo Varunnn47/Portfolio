@@ -4,11 +4,15 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
         heading: ['Inter', 'sans-serif'],
         body: ['Roboto', 'sans-serif'],
+      },
+      colors: {
+        'dark-custom': '#181818',
       },
     },
   },

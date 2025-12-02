@@ -7,12 +7,12 @@ const Footer = () => {
 
   const socials = [
     { icon: Github, href: 'https://github.com/Varunnn47', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/varun-140a192a1/', label: 'LinkedIn' },
     { icon: Mail, href: 'mailto:hello@portfolia.dev', label: 'Email' }
   ]
 
   return (
-    <footer className="bg-gray-900 text-white py-4">
+    <footer className="bg-dark-custom dark:bg-dark-custom text-white py-4">
       <motion.div
         variants={fadeIn}
         initial="hidden"

@@ -1,13 +1,13 @@
 // Analytics and Performance Tracking
 export const trackEvent = (eventName, parameters = {}) => {
-  if (typeof gtag !== 'undefined') {
-    gtag('event', eventName, parameters)
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', eventName, parameters)
   }
 }
 
 export const trackPageView = (pagePath) => {
-  if (typeof gtag !== 'undefined') {
-    gtag('config', 'GA_MEASUREMENT_ID', {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('config', 'GA_MEASUREMENT_ID', {
       page_path: pagePath
     })
   }

@@ -39,27 +39,31 @@ const Contact = ({ addToast }) => {
     setErrors({})
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      console.log('Form submitted:', Object.fromEntries(formData))
+      const name = formData.get('name')
+      const email = formData.get('email')
+      const message = formData.get('message')
+      
+      const subject = `Portfolio Contact: Message from ${name}`
+      const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+      
+      const mailtoLink = `mailto:edigavarunkumar66@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+      
+      window.location.href = mailtoLink
+      
       e.target.reset()
-      addToast('Message sent successfully! I\'ll get back to you soon.', 'success')
+      addToast('Email client opened! Please send the message from your email app.', 'success')
     } catch (error) {
       console.error('Submission error:', error)
-      addToast('Failed to send message. Please try again.', 'error')
+      addToast('Failed to open email client. Please try again.', 'error')
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  const info = [
-    { icon: Mail, label: 'Email', value: 'hello@portfolia.dev' },
-    { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567' },
-    { icon: MapPin, label: 'Location', value: 'San Francisco, CA' }
-  ]
+
 
   return (
-    <section id="contact" className="section-padding bg-white">
+    <section id="contact" className="section-padding bg-white dark:bg-dark-custom">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -68,29 +72,25 @@ const Contact = ({ addToast }) => {
         className="container-custom"
       >
         <motion.div variants={fadeIn} className="text-center mb-16">
-          <h2 className="font-heading text-4xl md:text-5xl text-gray-900 mb-4">
-            Get In <span className="text-black">Touch</span>
+          <h2 className="font-heading text-4xl md:text-5xl text-gray-900 dark:text-white mb-4">
+            Get In <span className="text-black dark:text-white">Touch</span>
           </h2>
-          <p className="font-body text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="font-body text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Have a project in mind or want to collaborate? I'd love to hear from you.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          <motion.div variants={slideUp} className="flex flex-col justify-center">
-            <div className="text-center">
-              <h3 className="text-5xl font-bold text-gray-900 mb-12 tracking-tight">
-                Connect With <span className="text-black">Me</span>
-              </h3>
-              <div className="flex justify-center">
-                <SolarSystemSocial />
-              </div>
-            </div>
+          <motion.div variants={slideUp} className="flex flex-col justify-center items-center">
+            <h3 className="text-5xl font-bold text-gray-900 dark:text-white mb-12 tracking-tight text-center">
+              Connect With <span className="text-black dark:text-white">Me</span>
+            </h3>
+            <SolarSystemSocial />
           </motion.div>
 
           <motion.form onSubmit={handleSubmit} variants={fadeIn} custom={1} className="space-y-6">
             <div>
-              <label htmlFor="name" className="block font-medium text-gray-900 mb-2">
+              <label htmlFor="name" className="block font-medium text-gray-900 dark:text-white mb-2">
                 Name
               </label>
               <input
@@ -108,7 +108,7 @@ const Contact = ({ addToast }) => {
             </div>
 
             <div>
-              <label htmlFor="email" className="block font-medium text-gray-900 mb-2">
+              <label htmlFor="email" className="block font-medium text-gray-900 dark:text-white mb-2">
                 Email
               </label>
               <input
@@ -126,7 +126,7 @@ const Contact = ({ addToast }) => {
             </div>
 
             <div>
-              <label htmlFor="message" className="block font-medium text-gray-900 mb-2">
+              <label htmlFor="message" className="block font-medium text-gray-900 dark:text-white mb-2">
                 Message
               </label>
               <textarea
