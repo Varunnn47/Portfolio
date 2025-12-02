@@ -29,7 +29,7 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       className="fixed bottom-8 left-0 right-0 flex justify-center z-50"
     >
-      <div className={`flex items-center gap-4 md:gap-6 px-5 md:px-8 py-3 md:py-4 rounded-full backdrop-blur-md border ${
+      <div className={`flex items-center gap-5 md:gap-6 px-6 md:px-8 py-3.5 md:py-4 rounded-full backdrop-blur-md border ${
         isDark 
           ? 'bg-dark-custom/80 border-gray-700' 
           : 'bg-white/80 border-gray-200'
@@ -50,7 +50,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.9 }}
               title={link.label}
             >
-              <IconComponent size={18} />
+              <IconComponent size={19} />
             </motion.a>
           )
         })}
@@ -66,7 +66,7 @@ const Navbar = () => {
           whileTap={{ scale: 0.9 }}
           title={isDark ? 'Light Mode' : 'Dark Mode'}
         >
-          {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          {isDark ? <Sun size={19} /> : <Moon size={19} />}
         </motion.button>
       </div>
     </motion.nav>
