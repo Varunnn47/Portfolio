@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="./new-profile.png" type="image/png">
+    <link rel="shortcut icon" href="./new-profile.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./new-profile.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Varun Goud</title>
+    <meta name="description" content="Professional portfolio of varun Goud, a full-stack developer specializing in React, Node.js, and modern web technologies. View projects, skills, and contact information." />
+    <meta name="keywords" content="web developer, full stack, React, Node.js, JavaScript, portfolio, software engineer, frontend, backend" />
+    <meta name="author" content="varun Goud" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://yourusername.github.io/Portfolio/" />
+    
+    <!-- Performance Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="varun Goud" />
+    <meta property="og:description" content="Professional portfolio showcasing web development projects and skills" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourusername.github.io/Portfolio/" />
+    <meta property="og:image" content="./new-profile.png" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="varun Goud" />
+    <meta name="twitter:description" content="Professional portfolio showcasing web development projects and skills" />
+    <meta name="twitter:image" content="./new-profile.png" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2563eb" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="./icon-192.png" />
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID', {
+        page_title: 'Portfolio',
+        page_location: window.location.href,
+        send_page_view: true
+      });
+    </script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "varun Goud",
+      "jobTitle": "Full Stack Developer",
+      "url": "https://yourusername.github.io/Portfolio/",
+      "sameAs": [
+        "https://github.com/yourusername",
+        "https://linkedin.com/in/yourusername"
+      ]
+    }
+    </script>
+    <script type="module" crossorigin src="./assets/index-CmRhSLTw.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-B30IvNh-.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <!-- PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => console.log('SW registered: ', registration))
+            .catch(registrationError => console.log('SW registration failed: ', registrationError));
+        });
+      }
+    </script>
+  </body>
+</html>
