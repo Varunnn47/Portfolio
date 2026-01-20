@@ -59,7 +59,7 @@ const Hero = () => {
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl">
                 <img 
-                  src="./23ATA31047.jpeg" 
+                  src="./varunpic.jpg.png" 
                   alt="Varun Goud" 
                   className="w-full h-full object-cover"
                   onError={(e) => console.log('Image failed to load:', e.target.src)}

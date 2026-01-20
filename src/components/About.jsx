@@ -33,7 +33,6 @@ const About = () => {
 
   const toolsSkills = [
     { name: 'GitHub', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg' },
-    { name: 'Vercel', logo: 'https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png' },
     { name: 'Firebase', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
     { name: 'Postman', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg' },
   ]
@@ -188,7 +187,7 @@ const About = () => {
             <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center tracking-tight text-gray-900 dark:text-white">
               Tools & Technologies
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
               {toolsSkills.map((skill, i) => (
                 <motion.div
                   key={skill.name}
