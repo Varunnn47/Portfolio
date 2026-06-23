@@ -6,7 +6,7 @@ export const projects = [
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80',
     tags: ['AI', 'Machine Learning', 'Python', 'NLP'],
     github: 'https://github.com/Varunnn47/RegulaNet-AI',
-    demo: '#'
+    demo: null
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const projects = [
     image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
     tags: ['HTML', 'CSS', 'JavaScript'],
     github: 'https://github.com/Varunnn47/Expense-Tracker',
-    demo: '#'
+    demo: null
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const projects = [
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
     tags: ['Python', 'Jupyter Notebook', 'Machine Learning'],
     github: 'https://github.com/Varunnn47/Employee-Salary-Prediction',
-    demo: '#'
+    demo: null
   },
   {
     id: 4,
@@ -32,8 +32,8 @@ export const projects = [
     description: 'Frontend e-commerce system featuring product catalog and cart functionality.',
     image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80',
     tags: ['React', 'Tailwind CSS'],
-    github: 'https://github.com/Varunnn47/Ecomm-project',
-    demo: '#'
+    github: 'https://github.com/Varunnn47/Ecom-project',
+    demo: null
   },
   {
     id: 5,
@@ -42,7 +42,7 @@ export const projects = [
     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80',
     tags: ['React', 'Node.js', 'Azure AI', 'Tailwind CSS', 'Machine Learning'],
     github: 'https://github.com/Varunnn47/InterveuX',
-    demo: '#'
+    demo: null
   },
   {
     id: 6,
@@ -51,6 +51,6 @@ export const projects = [
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
     tags: ['React', 'LLMs', 'Tailwind CSS'],
     github: 'https://github.com/Varunnn47/Optima-AI',
-    demo: '#'
+    demo: null
   }
 ]

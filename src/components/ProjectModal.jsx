@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ExternalLink, Github, Calendar, Users, Code } from 'lucide-react'
+import { X, ExternalLink, Github } from 'lucide-react'
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
   if (!project) return null
@@ -50,56 +50,20 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                   >
                     <Github size={20} />
                   </a>
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                  >
-                    <ExternalLink size={20} />
-                  </a>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div className="flex items-center gap-3">
-                  <Calendar className="text-blue-600" size={20} />
-                  <div>
-                    <p className="font-medium">Duration</p>
-                    <p className="text-gray-600 text-sm">3 months</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Users className="text-blue-600" size={20} />
-                  <div>
-                    <p className="font-medium">Team Size</p>
-                    <p className="text-gray-600 text-sm">4 developers</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Code className="text-blue-600" size={20} />
-                  <div>
-                    <p className="font-medium">My Role</p>
-                    <p className="text-gray-600 text-sm">Full Stack Developer</p>
-                  </div>
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                      <ExternalLink size={20} />
+                    </a>
+                  )}
                 </div>
               </div>
 
               <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">Challenge</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    The main challenge was to create a scalable e-commerce platform that could handle high traffic loads while maintaining excellent user experience and performance.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">Solution</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    We implemented a microservices architecture using React for the frontend, Node.js for the backend, and MongoDB for data storage. The application was deployed on AWS with auto-scaling capabilities.
-                  </p>
-                </div>
-
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">Technologies Used</h3>
                   <div className="flex flex-wrap gap-2">
@@ -112,16 +76,6 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                       </span>
                     ))}
                   </div>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">Results</h3>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• 40% improvement in page load times</li>
-                    <li>• 25% increase in user engagement</li>
-                    <li>• Successfully handled 10k+ concurrent users</li>
-                    <li>• 99.9% uptime achieved</li>
-                  </ul>
                 </div>
               </div>
             </div>
