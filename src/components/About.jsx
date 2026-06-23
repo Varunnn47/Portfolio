@@ -51,17 +51,17 @@ const About = () => {
             About <span className="text-black dark:text-white">Me</span>
           </h2>
           <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-light">
-            Full-stack and data science student passionate about modern web applications and machine learning.
+            AI Engineering student focused on building and shipping full-stack, AI-integrated products.
           </p>
         </motion.div>
 
         <motion.div variants={slideUp} className="max-w-4xl mx-auto mb-12 md:mb-16 text-left px-4">
           <div className="space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-300">
             <p>
-              I'm a final-year AI Engineering student at G. Pullaiah College of Engineering and Technology, Kurnool, graduating in 2027. I build and ship full-stack and AI-integrated products end to end — REST APIs, web front-ends, and LLM-based features — using Python, JavaScript, and modern AI development tooling to move fast from idea to a working deployment.
+              I'm a final-year AI Engineering student at G. Pullaiah College of Engineering and Technology, Kurnool, graduating in 2027. I build full-stack and AI-integrated products end to end — REST APIs, web interfaces, and LLM-based features — using Python, JavaScript, and modern AI development tooling to move from idea to working deployment quickly.
             </p>
             <p>
-              Right now I'm focused on strengthening my problem-solving fundamentals alongside shipping real projects, because I'd rather learn by building something real than just reading theory. My goal is to grow into an AI Engineer who ships practical, production-ready AI systems — not just demos.
+              I'm currently strengthening my core problem-solving fundamentals while continuing to ship real projects, with the goal of becoming an AI Engineer who builds practical, production-ready systems — not just demos.
             </p>
           </div>
         </motion.div>
