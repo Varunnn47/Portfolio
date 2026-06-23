@@ -1,4 +1,4 @@
-const CACHE_NAME = 'portfolio-v1'
+const CACHE_NAME = 'portfolio-v3'
 const urlsToCache = [
   './',
   './manifest.json',
