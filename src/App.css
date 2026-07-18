@@ -45,28 +45,18 @@ body {
 }
 
 .section-padding {
-  min-height: 100vh;
-  padding: 2rem 0;
-  display: flex;
-  align-items: center;
-}
-
-@media (max-width: 480px) {
-  .section-padding {
-    min-height: auto;
-    padding: 1.5rem 0;
-  }
+  padding: 4rem 0;
 }
 
 @media (min-width: 768px) {
   .section-padding {
-    padding: 4rem 0;
+    padding: 6rem 0;
   }
 }
 
 @media (min-width: 1024px) {
   .section-padding {
-    padding: 6rem 0;
+    padding: 8rem 0;
   }
 }
 
@@ -135,4 +125,9 @@ body {
 .dark .btn-secondary:hover {
   background: white;
   color: #000000;
+}
+
+/* Carousel scrollbar hide */
+.achievements-scroll::-webkit-scrollbar {
+  display: none;
 }

@@ -33,7 +33,7 @@ export const useLazyLoad = (options = {}) => {
   return { imgRef, isLoaded, isInView, handleLoad }
 }
 
-export const LazyImage = ({ src, alt, className, placeholder }) => {
+export const LazyImage = ({ src, alt, className }) => {
   const { imgRef, isLoaded, isInView, handleLoad } = useLazyLoad()
 
   return (

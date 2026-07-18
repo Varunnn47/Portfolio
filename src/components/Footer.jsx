@@ -8,7 +8,7 @@ const Footer = () => {
   const socials = [
     { icon: Github, href: 'https://github.com/Varunnn47', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/varun-140a192a1/', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:hello@portfolia.dev', label: 'Email' }
+    { icon: Mail, href: 'mailto:edigavarunkumar66@gmail.com', label: 'Email' }
   ]
 
   return (

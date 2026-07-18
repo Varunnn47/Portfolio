@@ -1,31 +1,9 @@
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Github } from 'lucide-react'
 import { fadeIn, scaleUp, staggerContainer } from '../utils/motionVariants'
 import { projects } from '../Data/mockData'
-import ProjectModal from './ProjectModal'
-import { ProjectSkeleton } from './LoadingSkeleton'
 
-const Projects = ({ addToast }) => {
-  const [filter, setFilter] = useState('All')
-  const [selectedProject, setSelectedProject] = useState(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [loading, setLoading] = useState(true)
-  
-  const categories = ['All', 'React', 'JavaScript', 'Python', 'Machine Learning', 'Node.js']
-  
-  const filteredProjects = projects
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 100)
-    return () => clearTimeout(timer)
-  }, [])
-
-  const openModal = (project) => {
-    setSelectedProject(project)
-    setIsModalOpen(true)
-    addToast('Opening project details', 'success')
-  }
+const Projects = () => {
   return (
     <section id="projects" className="section-padding bg-white dark:bg-dark-custom">
       <motion.div
@@ -42,15 +20,10 @@ const Projects = ({ addToast }) => {
           <p className="font-body text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
             A selection of my recent work showcasing expertise in modern web development and design.
           </p>
-          
-
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {loading ? (
-            [...Array(6)].map((_, i) => <ProjectSkeleton key={i} />)
-          ) : (
-            filteredProjects.map((project, i) => (
+          {projects.map((project, i) => (
             <motion.div
               key={project.id}
               variants={scaleUp}
@@ -95,8 +68,7 @@ const Projects = ({ addToast }) => {
                 ))}
               </div>
             </motion.div>
-            ))
-          )}
+          ))}
         </div>
         
         <motion.div variants={fadeIn} className="text-center mt-12">
@@ -112,12 +84,6 @@ const Projects = ({ addToast }) => {
             View More Projects
           </motion.a>
         </motion.div>
-        
-        <ProjectModal 
-          project={selectedProject}
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-        />
       </motion.div>
     </section>
   )

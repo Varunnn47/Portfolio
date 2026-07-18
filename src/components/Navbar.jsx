@@ -1,16 +1,43 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Home, User, Code, FolderOpen, Mail, Sun, Moon } from 'lucide-react'
+import { Home, User, Briefcase, FolderOpen, Award, Mail, Sun, Moon } from 'lucide-react'
 import { useTheme } from '../contexts/ThemeContext'
 
 const Navbar = () => {
   const { isDark, toggleTheme } = useTheme()
+  const [activeSections, setActiveSections] = useState(new Set())
 
   const links = [
     { label: 'Home', href: '#home', icon: Home },
     { label: 'About', href: '#about', icon: User },
+    { label: 'Experience', href: '#experience', icon: Briefcase },
     { label: 'Projects', href: '#projects', icon: FolderOpen },
+    { label: 'Achievements', href: '#achievements', icon: Award },
     { label: 'Contact', href: '#contact', icon: Mail }
   ]
+
+  useEffect(() => {
+    const sectionIds = ['home', 'about', 'experience', 'projects', 'achievements', 'contact']
+    const elements = sectionIds.map(id => document.getElementById(id)).filter(Boolean)
+
+    const observer = new IntersectionObserver((entries) => {
+      setActiveSections(prev => {
+        const next = new Set(prev)
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            next.add(entry.target.id)
+          } else {
+            next.delete(entry.target.id)
+          }
+        })
+        return next
+      })
+    }, { threshold: 0.3 })
+
+    elements.forEach(el => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
 
   const handleClick = (e, href) => {
     e.preventDefault()
@@ -36,15 +63,16 @@ const Navbar = () => {
       } shadow-lg`}>
         {links.map((link) => {
           const IconComponent = link.icon
+          const isActive = activeSections.has(link.href.slice(1))
           return (
             <motion.a
               key={link.label}
               href={link.href}
               onClick={(e) => handleClick(e, link.href)}
               className={`p-2.5 md:p-3 rounded-full transition-all duration-200 ${
-                isDark 
-                  ? 'text-gray-400 hover:text-white hover:bg-gray-800' 
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                isActive
+                  ? 'text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
               }`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}

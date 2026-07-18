@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Download, MapPin, Mail, Phone } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { fadeIn, slideUp, staggerContainer } from '../utils/motionVariants'
 
 const Hero = () => {
   return (
-    <section id="home" className="section-padding bg-white dark:bg-dark-custom">
+    <section id="home" className="section-padding min-h-screen flex items-center bg-white dark:bg-dark-custom">
       <motion.div
         variants={staggerContainer}
         initial="hidden"

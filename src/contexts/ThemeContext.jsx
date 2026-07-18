@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 
 const ThemeContext = createContext()
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
   const context = useContext(ThemeContext)
   if (!context) {
@@ -17,17 +18,7 @@ export const ThemeProvider = ({ children }) => {
     return savedTheme ? savedTheme === 'dark' : prefersDark
   })
 
-  // Apply theme to DOM on mount
-  useEffect(() => {
-    const root = document.documentElement
-    if (isDark) {
-      root.classList.add('dark')
-    } else {
-      root.classList.remove('dark')
-    }
-  }, [isDark])
-
-  // Handle theme changes
+  // Apply theme to DOM and persist to localStorage
   useEffect(() => {
     const root = document.documentElement
     
