@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { MapPin, Briefcase } from 'lucide-react'
+import { MapPin, Code2 } from 'lucide-react'
 import { fadeIn, slideUp, staggerContainer } from '../utils/motionVariants'
 import { experience } from '../Data/mockData'
 
@@ -83,7 +83,7 @@ const ExperienceCard = ({ entry }) => (
     {/* Top row: employment type badge + dates + location */}
     <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
       <span className="flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700">
-        <Briefcase size={11} />
+        <Code2 size={11} />
         {entry.employmentType}
       </span>
       <div className="flex flex-col items-end gap-0.5 text-xs text-gray-500 dark:text-gray-400">
@@ -98,7 +98,7 @@ const ExperienceCard = ({ entry }) => (
     {/* Company icon placeholder + role + company */}
     <div className="flex items-start gap-4 mb-4">
       <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center flex-shrink-0">
-        <Briefcase size={20} className="text-gray-500 dark:text-gray-400" />
+        <Code2 size={20} className="text-gray-500 dark:text-gray-400" />
       </div>
       <div>
         <h3 className="text-base font-bold text-gray-900 dark:text-white leading-tight">
@@ -132,4 +132,5 @@ const ExperienceCard = ({ entry }) => (
 )
 
 export default Experience
+
 

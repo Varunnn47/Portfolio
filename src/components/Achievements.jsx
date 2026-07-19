@@ -77,7 +77,7 @@ const Achievements = () => {
         {/* Heading row with Prev/Next buttons */}
         <motion.div variants={fadeIn} className="flex items-start justify-between mb-10 px-4 flex-wrap gap-4">
           <div>
-            <h2 className="font-heading text-4xl md:text-5xl text-gray-900 dark:text-white mb-3 tracking-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-gray-900 dark:text-white mb-3 tracking-tight">
               Achievements & <span>Certifications</span>
             </h2>
             <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl font-light">
