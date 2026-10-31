@@ -1,4 +1,4 @@
-const CACHE_NAME = 'portfolio-v5'
+const CACHE_NAME = 'portfolio-v6'
 const urlsToCache = [
   './',
   './manifest.json',
@@ -10,11 +10,8 @@ self.addEventListener('install', event => {
   self.skipWaiting()
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => {
-        return cache.addAll(urlsToCache).catch(err => {
-          console.warn('Cache addAll failed:', err)
-        })
-      })
+      .then(cache => cache.addAll(urlsToCache))
+      .catch(err => console.warn('Cache addAll failed:', err))
   )
 })
 
@@ -25,32 +22,35 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames
           .filter(name => name !== CACHE_NAME)
-          .map(name => {
-            console.log('Deleting old cache:', name)
-            return caches.delete(name)
-          })
+          .map(name => caches.delete(name))
       )
     }).then(() => self.clients.claim())
   )
 })
 
 self.addEventListener('fetch', event => {
-  // Network-first for JS/CSS assets (hashed filenames change each build)
-  // Cache-first only for static assets like icons
-  const url = new URL(event.request.url)
-  const isAsset = url.pathname.includes('/assets/')
+  const { request } = event
+  if (request.method !== 'GET' || new URL(request.url).origin !== self.location.origin) return
 
-  if (isAsset) {
-    // Assets are hashed — always fetch fresh, don't serve stale
-    event.respondWith(
-      fetch(event.request).catch(() => caches.match(event.request))
-    )
-  } else {
-    // For everything else: cache-first with network fallback
-    event.respondWith(
-      caches.match(event.request).then(response => {
-        return response || fetch(event.request)
+  // Network-first for everything: a deploy deletes old hashed assets, so a cached
+  // page must never be served while the network is available. The cache is offline-only.
+  event.respondWith(
+    fetch(request)
+      .then(response => {
+        if (response.ok) {
+          const copy = response.clone()
+          caches.open(CACHE_NAME).then(cache => cache.put(request, copy))
+        }
+        return response
       })
-    )
-  }
+      .catch(async () => {
+        const cached = await caches.match(request)
+        if (cached) return cached
+        if (request.mode === 'navigate') {
+          const page = await caches.match('./')
+          if (page) return page
+        }
+        return Response.error()
+      })
+  )
 })

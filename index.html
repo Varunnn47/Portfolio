@@ -3,39 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="./icon-192.png" type="image/png">
-    <link rel="shortcut icon" href="./icon-192.png" type="image/png">
     <link rel="apple-touch-icon" sizes="180x180" href="./icon-192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
+    <!-- Apply the saved theme before first paint so dark mode doesn't flash white -->
+    <script>
+      try {
+        var savedTheme = localStorage.getItem('theme');
+        if (savedTheme ? savedTheme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    </script>
+
     <!-- SEO Meta Tags -->
-    <title>Varun Goud | AI Engineer &amp; Full-Stack Developer</title>
-    <meta name="description" content="Portfolio of Varun Goud, an AI Engineering student building full-stack apps and AI-integrated products. Projects, skills, and contact info." />
-    <meta name="keywords" content="AI engineer, full stack developer, React, Node.js, Python, portfolio, software engineer" />
+    <title>Varun Goud | AI/ML Engineer &amp; Full-Stack Developer</title>
+    <meta name="description" content="Portfolio of Varun Goud, an AI/ML engineer and full-stack developer building AI-driven applications, REST APIs, and AI agents. Projects, experience, certifications, and resume." />
     <meta name="author" content="Varun Goud" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://varunnn47.github.io/Portfolio/" />
 
     <!-- Performance Meta Tags -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-    <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Varun Goud | AI Engineer &amp; Full-Stack Developer" />
-    <meta property="og:description" content="Portfolio showcasing AI-integrated and full-stack development projects." />
+    <meta property="og:title" content="Varun Goud | AI/ML Engineer &amp; Full-Stack Developer" />
+    <meta property="og:description" content="AI-driven applications, REST APIs, and AI agents. Projects, experience, certifications, and resume." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://varunnn47.github.io/Portfolio/" />
-    <meta property="og:image" content="https://varunnn47.github.io/Portfolio/icon-512.png" />
+    <meta property="og:image" content="https://varunnn47.github.io/Portfolio/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Varun Goud | AI Engineer &amp; Full-Stack Developer" />
-    <meta name="twitter:description" content="Portfolio showcasing AI-integrated and full-stack development projects." />
-    <meta name="twitter:image" content="https://varunnn47.github.io/Portfolio/icon-512.png" />
+    <meta name="twitter:title" content="Varun Goud | AI/ML Engineer &amp; Full-Stack Developer" />
+    <meta name="twitter:description" content="AI-driven applications, REST APIs, and AI agents. Projects, experience, certifications, and resume." />
+    <meta name="twitter:image" content="https://varunnn47.github.io/Portfolio/og-image.jpg" />
 
     <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#2563eb" />
+    <meta name="theme-color" content="#181818" />
     <link rel="manifest" href="./manifest.json" />
 
     <!-- Structured Data -->
@@ -44,7 +53,7 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Varun Goud",
-      "jobTitle": "AI Engineering Student &amp; Full-Stack Developer",
+      "jobTitle": "AI/ML Engineer and Full-Stack Developer",
       "url": "https://varunnn47.github.io/Portfolio/",
       "sameAs": [
         "https://github.com/Varunnn47",
@@ -52,19 +61,27 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/Portfolio/assets/index-DFEcORcr.js"></script>
-    <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-BxT3pkpt.css">
+    <script type="module" crossorigin src="/Portfolio/assets/index-DqsJRq_1.js"></script>
+    <link rel="stylesheet" crossorigin href="/Portfolio/assets/index-kqiQHA2r.css">
   </head>
   <body>
     <div id="root"></div>
-    
+    <noscript>
+      <h1>Varun Goud</h1>
+      <p>AI/ML engineer and full-stack developer building AI-driven applications, REST APIs, and AI agents.</p>
+      <p>
+        <a href="./Varun-Goud-Resume.pdf">Resume</a> ·
+        <a href="https://github.com/Varunnn47">GitHub</a> ·
+        <a href="https://www.linkedin.com/in/varun-140a192a1/">LinkedIn</a> ·
+        <a href="mailto:edigavarunkumar66@gmail.com">Email</a>
+      </p>
+    </noscript>
+
     <!-- PWA Service Worker -->
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js')
-            .then(registration => console.log('SW registered: ', registration))
-            .catch(registrationError => console.log('SW registration failed: ', registrationError));
+          navigator.serviceWorker.register('./sw.js').catch(err => console.warn('SW registration failed:', err));
         });
       }
     </script>
