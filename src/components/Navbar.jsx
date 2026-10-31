@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Home, User, Code2, FolderOpen, Trophy, Mail, Sun, Moon, GitCommit } from 'lucide-react'
+import { Home, User, Code2, FolderOpen, Mail, Sun, Moon } from 'lucide-react'
 import { useTheme } from '../contexts/ThemeContext'
 
 const links = [
@@ -8,12 +8,18 @@ const links = [
   { label: 'About', href: '#about', icon: User },
   { label: 'Experience', href: '#experience', icon: Code2 },
   { label: 'Projects', href: '#projects', icon: FolderOpen },
-  { label: 'Contributions', href: '#contributions', icon: GitCommit },
-  { label: 'Certifications', href: '#achievements', icon: Trophy },
   { label: 'Contact', href: '#contact', icon: Mail }
 ]
 
-const itemClass = 'group relative flex items-center justify-center w-9 h-9 min-[375px]:w-10 min-[375px]:h-10 sm:w-11 sm:h-11 rounded-full transition-all duration-200'
+// Sections with no button of their own count as part of the nav item above them
+const parentSection = {
+  contributions: 'projects',
+  achievements: 'projects',
+}
+
+const sectionIds = [...links.map(link => link.href.slice(1)), ...Object.keys(parentSection)]
+
+const itemClass = 'group relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full transition-all duration-200'
 
 const HoverLabel = ({ children }) => (
   <span className="hidden sm:block absolute bottom-full mb-3 px-2 py-1 rounded-md text-xs font-medium whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity bg-gray-900 dark:bg-white text-white dark:text-gray-900">
@@ -26,12 +32,12 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
-    const elements = links.map(link => document.querySelector(link.href)).filter(Boolean)
+    const elements = sectionIds.map(id => document.getElementById(id)).filter(Boolean)
 
     // A thin band at mid-viewport, so exactly one section is active at a time
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) setActiveSection(entry.target.id)
+        if (entry.isIntersecting) setActiveSection(parentSection[entry.target.id] ?? entry.target.id)
       })
     }, { rootMargin: '-50% 0px -50% 0px' })
 

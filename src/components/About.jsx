@@ -1,8 +1,33 @@
 import { motion } from 'framer-motion'
+import { BadgeCheck, FileText, Github, GraduationCap, Linkedin, Target } from 'lucide-react'
 import { fadeIn, slideUp, staggerContainer } from '../utils/motionVariants'
-import { skillGroups } from '../Data/portfolioData'
+import { profile, skillGroups } from '../Data/portfolioData'
 
 const DEVICON_BASE = 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons'
+
+const aboutLinks = [
+  { icon: FileText, href: profile.resume, label: 'Resume', download: true },
+  { icon: Github, href: profile.github, label: 'GitHub' },
+  { icon: Linkedin, href: profile.linkedin, label: 'LinkedIn' },
+]
+
+const quickFacts = [
+  {
+    icon: Target,
+    label: 'Focus',
+    value: 'AI agents, LLM applications, and full-stack products',
+  },
+  {
+    icon: GraduationCap,
+    label: 'Education',
+    value: 'B.Tech in Artificial Intelligence, G. Pullaiah College of Engineering and Technology. Final semester, graduating 2027.',
+  },
+  {
+    icon: BadgeCheck,
+    label: 'Certified',
+    value: 'SAP Back-End Developer (ABAP Cloud), ServiceNow CAD and CSA',
+  },
+]
 
 // Keyed by skill count, so each row of tiles fills its card
 const gridClasses = {
@@ -23,24 +48,62 @@ const About = () => {
         className="container-custom"
       >
         <motion.div variants={fadeIn} className="text-center mb-8 md:mb-10 px-4">
-          <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900 dark:text-white mb-4 tracking-tight">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900 dark:text-white tracking-tight">
             About Me
           </h2>
-          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-light">
-            AI/ML engineer and full-stack developer building AI-driven applications and intelligent systems.
-          </p>
         </motion.div>
 
-        <motion.div variants={slideUp} className="max-w-4xl mx-auto mb-8 md:mb-10 text-left px-4">
-          <div className="space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-10 items-start max-w-5xl mx-auto mb-12 md:mb-16 px-4">
+          <motion.div variants={slideUp} className="space-y-4 text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-300">
             <p>
-              I'm in the final semester of my B.Tech in Artificial Intelligence at G. Pullaiah College of Engineering and Technology, Kurnool, graduating in 2027. I build AI-driven applications, REST APIs, and automation workflows using Python, Java, and JavaScript.
+              Hi, I'm Varun. I build AI products end to end, from the model and backend to the app people use.
             </p>
             <p>
-              My main interest is AI agents and intelligent systems. I'm currently developing health and food-scanning models at AETHRIZ, and building the mobile app and website for Masika Care, a menstrual health startup.
+              <span className="font-semibold text-gray-900 dark:text-white">Right now:</span> I'm developing health and food-scanning models at AETHRIZ, and building the mobile app and website for Masika Care, a deep-tech menstrual health startup.
             </p>
-          </div>
-        </motion.div>
+            <p>
+              <span className="font-semibold text-gray-900 dark:text-white">What I've built:</span> Patient and doctor roles, appointment booking, and real-time chat at Masika Care, plus a security audit before closed beta. On my own, a research paper summarizer with semantic search and a chatbot where a judge model picks the better of two LLM answers.
+            </p>
+            <p>
+              <span className="font-semibold text-gray-900 dark:text-white">What's next:</span> Going deeper into AI agents and intelligent systems.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-1">
+              {aboutLinks.map((link) => {
+                const Icon = link.icon
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    {...(link.download ? { download: true } : { target: '_blank', rel: 'noopener noreferrer' })}
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  >
+                    <Icon size={16} />
+                    {link.label}
+                  </a>
+                )
+              })}
+            </div>
+          </motion.div>
+
+          <motion.ul variants={fadeIn} custom={1} className="rounded-2xl border border-gray-200 dark:border-gray-700 divide-y divide-gray-200 dark:divide-gray-700">
+            {quickFacts.map((fact) => {
+              const Icon = fact.icon
+              return (
+                <li key={fact.label} className="flex items-start gap-3 p-4">
+                  <Icon size={18} className="mt-0.5 flex-shrink-0 text-gray-500 dark:text-gray-400" />
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-1">
+                      {fact.label}
+                    </p>
+                    <p className="text-sm leading-relaxed text-gray-900 dark:text-white">
+                      {fact.value}
+                    </p>
+                  </div>
+                </li>
+              )
+            })}
+          </motion.ul>
+        </div>
 
         <motion.div variants={fadeIn} className="text-center mb-8 md:mb-10 px-4">
           <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900 dark:text-white mb-4 tracking-tight">

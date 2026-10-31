@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Download, Github, Linkedin, Mail } from 'lucide-react'
+import { ArrowRight, FileText, Github, Linkedin, Mail } from 'lucide-react'
 import { fadeIn, slideUp, staggerContainer } from '../utils/motionVariants'
 import { profile } from '../Data/portfolioData'
 
@@ -18,7 +18,7 @@ const Hero = () => {
         animate="visible"
         className="container-custom"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center max-w-6xl mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-6 lg:gap-16 items-center max-w-6xl mx-auto px-4">
           {/* Left Content */}
           <motion.div variants={fadeIn} className="text-left order-1 lg:order-1">
             <motion.div className="mb-4 md:mb-6">
@@ -28,14 +28,14 @@ const Hero = () => {
             </motion.div>
 
             <motion.h1
-              className="text-5xl sm:text-6xl lg:text-7xl text-gray-900 dark:text-white mb-3 md:mb-4 leading-tight font-bold"
+              className="text-5xl sm:text-6xl lg:text-7xl text-gray-900 dark:text-white mb-2 md:mb-3 leading-tight font-bold tracking-tight"
             >
               Varun Goud
             </motion.h1>
 
             <motion.p
               variants={fadeIn}
-              className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-4 md:mb-6"
+              className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-3 md:mb-4"
             >
               AI/ML Engineer &amp; Full-Stack Developer
             </motion.p>
@@ -43,15 +43,15 @@ const Hero = () => {
             <motion.p
               variants={fadeIn}
               custom={1}
-              className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 md:mb-8 leading-relaxed"
+              className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 md:mb-8 leading-relaxed max-w-xl"
             >
-              I build AI-driven applications, REST APIs, and AI agents. Currently an AI/ML Engineer Intern at AETHRIZ and building the Masika Care app and website.
+              I build AI products end to end, from the model to the app people use.
             </motion.p>
 
             <motion.div
               variants={fadeIn}
               custom={3}
-              className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4"
+              className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6"
             >
               <motion.a
                 href="#projects"
@@ -62,36 +62,39 @@ const Hero = () => {
                 View Projects
                 <ArrowRight size={20} />
               </motion.a>
-              <motion.a
-                href={profile.resume}
-                download
-                className="btn-secondary"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Download Resume
-                <Download size={20} />
-              </motion.a>
-            </motion.div>
 
-            <motion.div variants={fadeIn} custom={4} className="flex items-center gap-3 mt-6">
-              {socials.map((social) => {
-                const Icon = social.icon
-                return (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <Icon size={18} />
-                  </motion.a>
-                )
-              })}
+              <div className="flex items-center justify-center sm:justify-start gap-4">
+                {socials.map((social) => {
+                  const Icon = social.icon
+                  return (
+                    <motion.a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      className="p-1 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                      whileHover={{ scale: 1.15 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <Icon size={22} />
+                    </motion.a>
+                  )
+                })}
+
+                <span className="h-6 w-px bg-gray-300 dark:bg-gray-600" aria-hidden="true" />
+
+                <motion.a
+                  href={profile.resume}
+                  download
+                  className="inline-flex items-center gap-2 p-1 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FileText size={20} />
+                  Resume
+                </motion.a>
+              </div>
             </motion.div>
           </motion.div>
 
