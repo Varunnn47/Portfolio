@@ -10,6 +10,17 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+html.dark {
+  background: #181818;
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   line-height: 1.6;
@@ -45,18 +56,18 @@ body {
 }
 
 .section-padding {
-  padding: 4rem 0;
+  padding: 3rem 0;
 }
 
 @media (min-width: 768px) {
   .section-padding {
-    padding: 6rem 0;
+    padding: 4rem 0;
   }
 }
 
 @media (min-width: 1024px) {
   .section-padding {
-    padding: 8rem 0;
+    padding: 5rem 0;
   }
 }
 
@@ -70,6 +81,7 @@ body {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
   border: none;
@@ -91,6 +103,7 @@ body {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -102,21 +115,12 @@ body {
   transform: translateY(-2px);
 }
 
-/* Card styles */
-.card {
-  background: white;
-  border-radius: 1rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.card:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
 /* Dark mode button styles */
+.dark .btn-primary {
+  background: white;
+  color: #111111;
+}
+
 .dark .btn-secondary {
   color: white;
   border-color: white;
@@ -125,9 +129,4 @@ body {
 .dark .btn-secondary:hover {
   background: white;
   color: #000000;
-}
-
-/* Carousel scrollbar hide */
-.achievements-scroll::-webkit-scrollbar {
-  display: none;
 }

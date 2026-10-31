@@ -1,42 +1,18 @@
 import { motion } from 'framer-motion'
 import { fadeIn, slideUp, staggerContainer } from '../utils/motionVariants'
+import { skillGroups } from '../Data/portfolioData'
+
+const DEVICON_BASE = 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons'
+
+// Keyed by skill count, so each row of tiles fills its card
+const gridClasses = {
+  4: 'grid-cols-2 sm:grid-cols-4',
+  6: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6',
+  7: 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7',
+  8: 'grid-cols-2 sm:grid-cols-4',
+}
 
 const About = () => {
-  const languages = [
-    { name: 'JavaScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-    { name: 'TypeScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
-    { name: 'Python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
-    { name: 'Java', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
-    { name: 'C++', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
-    { name: 'HTML5', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
-    { name: 'CSS3', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
-  ]
-
-  const environments = [
-    { name: 'Node.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
-    { name: 'Jupyter', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg' },
-    { name: 'VS Code', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg' },
-    { name: 'Git', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
-  ]
-
-  const frontendSkills = [
-    { name: 'React', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-    { name: 'Tailwind CSS', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg' },
-    { name: 'Bootstrap', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg' },
-  ]
-
-  const backendSkills = [
-    { name: 'Express.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
-    { name: 'MongoDB', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
-    { name: 'MySQL', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
-  ]
-
-  const toolsSkills = [
-    { name: 'GitHub', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg' },
-    { name: 'Firebase', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
-    { name: 'Postman', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg' },
-  ]
-
   return (
     <section id="about" className="section-padding bg-white dark:bg-dark-custom">
       <motion.div
@@ -46,157 +22,80 @@ const About = () => {
         viewport={{ once: true, amount: 0.1 }}
         className="container-custom"
       >
-        <motion.div variants={fadeIn} className="text-center mb-12 md:mb-16 px-4">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
-            About <span className="text-black dark:text-white">Me</span>
+        <motion.div variants={fadeIn} className="text-center mb-8 md:mb-10 px-4">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900 dark:text-white mb-4 tracking-tight">
+            About Me
           </h2>
           <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-light">
-            AI Engineering student focused on building and shipping full-stack, AI-integrated products.
+            AI/ML engineer and full-stack developer building AI-driven applications and intelligent systems.
           </p>
         </motion.div>
 
-        <motion.div variants={slideUp} className="max-w-4xl mx-auto mb-12 md:mb-16 text-left px-4">
+        <motion.div variants={slideUp} className="max-w-4xl mx-auto mb-8 md:mb-10 text-left px-4">
           <div className="space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-300">
             <p>
-              I'm a final-year AI Engineering student at G. Pullaiah College of Engineering and Technology, Kurnool, graduating in 2027. I build full-stack and AI-integrated products end to end — REST APIs, web interfaces, and LLM-based features — using Python, JavaScript, and modern AI development tooling to move from idea to working deployment quickly.
+              I'm in the final semester of my B.Tech in Artificial Intelligence at G. Pullaiah College of Engineering and Technology, Kurnool, graduating in 2027. I build AI-driven applications, REST APIs, and automation workflows using Python, Java, and JavaScript.
             </p>
             <p>
-              I'm currently strengthening my core problem-solving fundamentals while continuing to ship real projects, with the goal of becoming an AI Engineer who builds practical, production-ready systems — not just demos.
+              My main interest is AI agents and intelligent systems. I'm currently developing health and food-scanning models at AETHRIZ, and building the mobile app and website for Masika Care, a menstrual health startup.
             </p>
           </div>
         </motion.div>
 
-        <motion.div variants={fadeIn} className="text-center mb-12 md:mb-16 px-4">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
-            Tech <span className="text-black dark:text-white">Stack</span>
+        <motion.div variants={fadeIn} className="text-center mb-8 md:mb-10 px-4">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900 dark:text-white mb-4 tracking-tight">
+            Tech Stack
           </h2>
           <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-light">
-            Technologies and tools I work with to build innovative solutions.
+            Technologies and tools I work with.
           </p>
         </motion.div>
 
-        <div className="space-y-8 md:space-y-12 px-4">
-          <motion.div variants={fadeIn} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 md:p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
-            <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center tracking-tight text-gray-900 dark:text-white">
-              Languages
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 md:gap-6">
-              {languages.map((skill, i) => (
-                <motion.div
-                  key={skill.name}
-                  variants={fadeIn}
-                  custom={i}
-                  className="flex flex-col items-center p-2 md:p-4 rounded-xl transition-all duration-300 group shadow-sm hover:shadow-lg bg-white dark:bg-dark-custom hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-100 dark:border-gray-600"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                >
-                  <div className="w-8 h-8 md:w-12 md:h-12 mb-2 md:mb-3 group-hover:scale-110 transition-transform">
-                    <img src={skill.logo} alt={skill.name} className="w-full h-full object-contain" />
-                  </div>
-                  <span className="font-medium text-xs md:text-sm text-center tracking-wide text-gray-900 dark:text-white">
-                    {skill.name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div variants={fadeIn} custom={1} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 md:p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
-            <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center tracking-tight text-gray-900 dark:text-white">
-              Environments
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
-              {environments.map((skill, i) => (
-                <motion.div
-                  key={skill.name}
-                  variants={fadeIn}
-                  custom={i}
-                  className="flex flex-col items-center p-4 rounded-xl transition-all duration-300 group shadow-sm hover:shadow-lg bg-white dark:bg-dark-custom hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-100 dark:border-gray-600"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                >
-                  <div className="w-12 h-12 mb-3 group-hover:scale-110 transition-transform">
-                    <img src={skill.logo} alt={skill.name} className="w-full h-full object-contain" />
-                  </div>
-                  <span className="font-medium text-sm text-center tracking-wide text-gray-900 dark:text-white">
-                    {skill.name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div variants={fadeIn} custom={2} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 md:p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
-            <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center tracking-tight text-gray-900 dark:text-white">
-              Frontend Development
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
-              {frontendSkills.map((skill, i) => (
-                <motion.div
-                  key={skill.name}
-                  variants={fadeIn}
-                  custom={i}
-                  className="flex flex-col items-center p-4 rounded-xl bg-white dark:bg-dark-custom hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 group shadow-sm hover:shadow-lg border border-gray-100 dark:border-gray-600"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                >
-                  <div className="w-12 h-12 mb-3 group-hover:scale-110 transition-transform">
-                    <img src={skill.logo} alt={skill.name} className="w-full h-full object-contain" />
-                  </div>
-                  <span className="font-medium text-gray-900 dark:text-white text-sm text-center tracking-wide">
-                    {skill.name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div variants={fadeIn} custom={3} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 md:p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
-            <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center tracking-tight text-gray-900 dark:text-white">
-              Backend Development
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
-              {backendSkills.map((skill, i) => (
-                <motion.div
-                  key={skill.name}
-                  variants={fadeIn}
-                  custom={i}
-                  className="flex flex-col items-center p-4 rounded-xl bg-white dark:bg-dark-custom hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 group shadow-sm hover:shadow-lg border border-gray-100 dark:border-gray-600"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                >
-                  <div className="w-12 h-12 mb-3 group-hover:scale-110 transition-transform">
-                    <img src={skill.logo} alt={skill.name} className="w-full h-full object-contain" />
-                  </div>
-                  <span className="font-medium text-gray-900 dark:text-white text-sm text-center tracking-wide">
-                    {skill.name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div variants={fadeIn} custom={4} className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 md:p-8 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600">
-            <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center tracking-tight text-gray-900 dark:text-white">
-              Tools & Technologies
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
-              {toolsSkills.map((skill, i) => (
-                <motion.div
-                  key={skill.name}
-                  variants={fadeIn}
-                  custom={i}
-                  className="flex flex-col items-center p-4 rounded-xl bg-white dark:bg-dark-custom hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 group shadow-sm hover:shadow-lg border border-gray-100 dark:border-gray-600"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                >
-                  <div className="w-12 h-12 mb-3 group-hover:scale-110 transition-transform">
-                    <img src={skill.logo} alt={skill.name} className="w-full h-full object-contain" />
-                  </div>
-                  <span className="font-medium text-gray-900 dark:text-white text-sm text-center tracking-wide">
-                    {skill.name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-
+        <div className="space-y-4 md:space-y-5 px-4">
+          {skillGroups.map((group, groupIndex) => (
+            <motion.div
+              key={group.title}
+              variants={fadeIn}
+              custom={groupIndex}
+              className="rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 p-4 md:p-5 bg-white dark:bg-dark-custom border border-gray-100 dark:border-gray-600"
+            >
+              <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-center tracking-tight text-gray-900 dark:text-white">
+                {group.title}
+              </h3>
+              <div className={`grid gap-2 md:gap-3 ${gridClasses[group.skills.length]}`}>
+                {group.skills.map((skill, i) => {
+                  const Icon = skill.lucide
+                  return (
+                    <motion.div
+                      key={skill.name}
+                      variants={fadeIn}
+                      custom={i}
+                      className="flex flex-col items-center p-2 md:p-3 rounded-xl transition-all duration-300 group shadow-sm hover:shadow-lg bg-white dark:bg-dark-custom hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-100 dark:border-gray-600"
+                      whileHover={{ scale: 1.05, y: -3 }}
+                    >
+                      <div className="w-7 h-7 md:w-9 md:h-9 mb-1.5 md:mb-2 group-hover:scale-110 transition-transform">
+                        {Icon ? (
+                          <Icon className="w-full h-full text-gray-700 dark:text-gray-200" strokeWidth={1.5} />
+                        ) : (
+                          <img
+                            src={`${DEVICON_BASE}/${skill.icon}.svg`}
+                            alt=""
+                            width="48"
+                            height="48"
+                            loading="lazy"
+                            className={`w-full h-full object-contain ${skill.invertDark ? 'dark:invert' : ''} ${skill.brightenDark ? 'dark:brightness-200' : ''}`}
+                          />
+                        )}
+                      </div>
+                      <span className="font-medium text-xs md:text-sm text-center tracking-wide text-gray-900 dark:text-white">
+                        {skill.name}
+                      </span>
+                    </motion.div>
+                  )
+                })}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </motion.div>
     </section>

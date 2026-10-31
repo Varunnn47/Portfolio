@@ -1,7 +1,15 @@
 import { motion } from 'framer-motion'
 import { MapPin, Code2 } from 'lucide-react'
 import { fadeIn, slideUp, staggerContainer } from '../utils/motionVariants'
-import { experience } from '../Data/mockData'
+import { experience } from '../Data/portfolioData'
+
+import logoMasika from '../assets/logos/logo-masika.jpg'
+import logoAethriz from '../assets/logos/logo-aethriz.png'
+
+const companyLogos = {
+  'logo-masika.jpg': logoMasika,
+  'logo-aethriz.png': logoAethriz,
+}
 
 const Experience = () => {
   if (!experience || experience.length === 0) return null
@@ -16,12 +24,12 @@ const Experience = () => {
         className="container-custom"
       >
         {/* Heading */}
-        <motion.div variants={fadeIn} className="text-center mb-12 md:mb-20 px-4">
-          <h2 className="font-heading text-4xl md:text-5xl text-gray-900 dark:text-white mb-4 tracking-tight">
-            Work <span>Experience</span>
+        <motion.div variants={fadeIn} className="text-center mb-8 md:mb-10 px-4">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900 dark:text-white mb-4 tracking-tight">
+            Work Experience
           </h2>
           <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-light">
-            My professional journey and the impact I've made along the way.
+            Where I've worked and what I've built there.
           </p>
         </motion.div>
 
@@ -31,7 +39,7 @@ const Experience = () => {
           {/* Center vertical line — only on md+ */}
           <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 dark:bg-gray-700 -translate-x-1/2" />
 
-          <div className="flex flex-col gap-12 md:gap-16">
+          <div className="flex flex-col gap-5 md:gap-6">
             {experience.map((entry, i) => {
               const isLeft = i % 2 === 0
               return (
@@ -41,13 +49,13 @@ const Experience = () => {
                   <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-6 w-3.5 h-3.5 rounded-full bg-gray-900 dark:bg-white border-4 border-white dark:border-dark-custom z-10" />
 
                   {/* LEFT side — card or spacer */}
-                  <div className={`w-full md:w-1/2 ${isLeft ? 'md:pr-10' : 'md:pr-0 md:pl-10 md:order-last'}`}>
+                  <div className={`w-full md:w-1/2 md:pr-10 ${isLeft ? '' : 'hidden md:block'}`}>
                     {isLeft && (
                       <motion.div
                         variants={slideUp}
                         custom={i}
                         whileHover={{ scale: 1.02, y: -4 }}
-                        className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-dark-custom p-5 transition-shadow duration-300 hover:shadow-xl"
+                        className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-dark-custom p-4 transition-shadow duration-300 hover:shadow-xl"
                       >
                         <ExperienceCard entry={entry} />
                       </motion.div>
@@ -55,13 +63,13 @@ const Experience = () => {
                   </div>
 
                   {/* RIGHT side — card or spacer */}
-                  <div className={`w-full md:w-1/2 ${isLeft ? 'md:pl-10 md:order-last' : 'md:pr-10'}`}>
+                  <div className={`w-full md:w-1/2 md:pl-10 ${isLeft ? 'hidden md:block' : ''}`}>
                     {!isLeft && (
                       <motion.div
                         variants={slideUp}
                         custom={i}
                         whileHover={{ scale: 1.02, y: -4 }}
-                        className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-dark-custom p-5 transition-shadow duration-300 hover:shadow-xl"
+                        className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-dark-custom p-4 transition-shadow duration-300 hover:shadow-xl"
                       >
                         <ExperienceCard entry={entry} />
                       </motion.div>
@@ -95,10 +103,14 @@ const ExperienceCard = ({ entry }) => (
       </div>
     </div>
 
-    {/* Company icon placeholder + role + company */}
+    {/* Company logo (icon placeholder if none) + role + company */}
     <div className="flex items-start gap-4 mb-4">
-      <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center flex-shrink-0">
-        <Code2 size={20} className="text-gray-500 dark:text-gray-400" />
+      <div className="w-12 h-12 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center flex-shrink-0">
+        {companyLogos[entry.logo] ? (
+          <img src={companyLogos[entry.logo]} alt={`${entry.company} logo`} className="w-full h-full object-cover" />
+        ) : (
+          <Code2 size={20} className="text-gray-500 dark:text-gray-400" />
+        )}
       </div>
       <div>
         <h3 className="text-base font-bold text-gray-900 dark:text-white leading-tight">
@@ -121,8 +133,8 @@ const ExperienceCard = ({ entry }) => (
     {entry.achievements && entry.achievements.length > 0 && (
       <ul className="space-y-1 mt-3">
         {entry.achievements.map((item, idx) => (
-          <li key={idx} className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-            <span className="w-1 h-1 rounded-full bg-gray-400 dark:bg-gray-500 flex-shrink-0" />
+          <li key={idx} className="flex items-start gap-2 text-xs text-gray-500 dark:text-gray-400">
+            <span className="w-1 h-1 mt-[7px] rounded-full bg-gray-400 dark:bg-gray-500 flex-shrink-0" />
             {item}
           </li>
         ))}

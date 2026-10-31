@@ -1,67 +1,30 @@
-import { useRef, useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { BadgeCheck, ExternalLink, X, Shield, Star } from 'lucide-react'
 import { fadeIn, staggerContainer } from '../utils/motionVariants'
-import { achievements } from '../Data/mockData'
+import { achievements } from '../Data/portfolioData'
 
-// Import certificate images so Vite resolves the base path correctly
+import certSapAbapCloud from '../assets/certificates/cert-sap-abap-cloud.jpg'
 import certServiceNowCAD from '../assets/certificates/cert-servicenow-cad.jpg'
 import certServiceNowCSA from '../assets/certificates/cert-servicenow-csa.jpg'
-import certAWSGenAI from '../assets/certificates/cert-aws-genai.jpg'
 
 const certImages = {
+  'cert-sap-abap-cloud.jpg': certSapAbapCloud,
   'cert-servicenow-cad.jpg': certServiceNowCAD,
   'cert-servicenow-csa.jpg': certServiceNowCSA,
-  'cert-aws-genai.jpg': certAWSGenAI,
 }
 
 const Achievements = () => {
-  const scrollRef = useRef(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
-
-  const updateScrollState = () => {
-    const el = scrollRef.current
-    if (!el) return
-    setCanScrollLeft(el.scrollLeft > 0)
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1)
-  }
+  const [lightbox, setLightbox] = useState(null)
 
   useEffect(() => {
-    updateScrollState()
-  }, [])
-
-  useEffect(() => {
-    const el = scrollRef.current
-    if (!el) return
-
-    const handleWheel = (e) => {
-      e.preventDefault()
-      el.scrollLeft += e.deltaY
-      updateScrollState()
+    if (!lightbox) return
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setLightbox(null)
     }
-
-    el.addEventListener('wheel', handleWheel, { passive: false })
-    return () => el.removeEventListener('wheel', handleWheel)
-  }, [])
-
-  const scroll = (direction) => {
-    const el = scrollRef.current
-    if (!el) return
-    const cardWidth = el.children[0]?.offsetWidth + 24 || 320
-    el.scrollBy({ left: direction === 'next' ? cardWidth : -cardWidth, behavior: 'smooth' })
-    setTimeout(updateScrollState, 400)
-  }
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'ArrowRight' && canScrollRight) {
-      e.preventDefault()
-      scroll('next')
-    } else if (e.key === 'ArrowLeft' && canScrollLeft) {
-      e.preventDefault()
-      scroll('prev')
-    }
-  }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [lightbox])
 
   if (!achievements || achievements.length === 0) return null
 
@@ -71,114 +34,185 @@ const Achievements = () => {
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.1 }}
         className="container-custom"
       >
-        {/* Heading row with Prev/Next buttons */}
-        <motion.div variants={fadeIn} className="flex items-start justify-between mb-10 px-4 flex-wrap gap-4">
-          <div>
-            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-gray-900 dark:text-white mb-3 tracking-tight">
-              Achievements & <span>Certifications</span>
-            </h2>
-            <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl font-light">
-              Certifications, awards, and milestones from my learning journey.
-            </p>
-          </div>
-          <div className="flex items-center gap-2 mt-2">
-            <button
-              onClick={() => scroll('prev')}
-              disabled={!canScrollLeft}
-              aria-label="Previous"
-              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-200 
-                ${canScrollLeft
-                  ? 'border-gray-200 dark:border-gray-700 bg-white dark:bg-dark-custom text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:shadow-md'
-                  : 'border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 text-gray-300 dark:text-gray-700 cursor-not-allowed opacity-50'
-                }`}
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <button
-              onClick={() => scroll('next')}
-              disabled={!canScrollRight}
-              aria-label="Next"
-              className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-200 
-                ${canScrollRight
-                  ? 'border-gray-200 dark:border-gray-700 bg-white dark:bg-dark-custom text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:shadow-md'
-                  : 'border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 text-gray-300 dark:text-gray-700 cursor-not-allowed opacity-50'
-                }`}
-            >
-              <ChevronRight size={18} />
-            </button>
-          </div>
+        {/* Heading */}
+        <motion.div variants={fadeIn} className="text-center mb-8 md:mb-10 px-4">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900 dark:text-white mb-4 tracking-tight">
+            Certifications
+          </h2>
+          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto font-light">
+            Industry certifications I've earned from SAP and ServiceNow.
+          </p>
         </motion.div>
 
-        {/* Carousel */}
-        <motion.div variants={fadeIn} className="px-4">
-          <div
-            ref={scrollRef}
-            onScroll={updateScrollState}
-            onKeyDown={handleKeyDown}
-            tabIndex={0}
-            role="region"
-            aria-label="Achievements and Certifications carousel"
-            className="achievements-scroll flex gap-6 overflow-x-auto pb-6 focus:outline-none"
-            style={{
-              scrollSnapType: 'x mandatory',
-              scrollBehavior: 'smooth',
-              msOverflowStyle: 'none',
-              scrollbarWidth: 'none',
-            }}
-          >
-            {achievements.map((entry) => (
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 max-w-5xl mx-auto">
+          {achievements.map((entry, i) => {
+            const imgSrc = certImages[entry.image] ?? entry.image
+            const Icon = entry.category === 'Certification' ? Shield : Star
+
+            return (
               <motion.div
                 key={entry.id}
-                whileHover={{ scale: 1.01, y: -4 }}
-                className="flex-shrink-0 w-72 rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-dark-custom overflow-hidden transition-shadow duration-300 hover:shadow-xl group"
-                style={{ scrollSnapAlign: 'start' }}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="relative flex flex-col rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-500 bg-white dark:bg-dark-custom overflow-hidden transition-all duration-300 hover:shadow-2xl dark:hover:shadow-black/40"
               >
-                {/* Certificate image — full width, natural aspect ratio */}
-                {entry.image && (
+                {/* Certificate thumbnail — compact, framed */}
+                <div
+                  className="relative mx-4 mt-4 mb-0 rounded-xl overflow-hidden cursor-pointer border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 group/img"
+                  style={{ aspectRatio: '2/1' }}
+                  onClick={() => setLightbox(entry)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={e => e.key === 'Enter' && setLightbox(entry)}
+                  aria-label={`Preview ${entry.title}`}
+                >
+                  <img
+                    src={imgSrc}
+                    alt={entry.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
+                  />
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/50 transition-all duration-300 flex items-center justify-center">
+                    <span className="opacity-0 group-hover/img:opacity-100 transition-all duration-300 text-white text-xs font-semibold tracking-wide flex items-center gap-1.5">
+                      <ExternalLink size={13} /> Click to preview
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col flex-1 p-4 pt-3">
+                  {/* Category + icon */}
+                  <div className="mb-2">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+                      <Icon size={10} />
+                      {entry.category}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-sm font-bold text-gray-900 dark:text-white leading-snug mb-1">
+                    {entry.title}
+                  </h3>
+
+                  {/* Org + date */}
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+                    {entry.organization} · {entry.issueDate}
+                  </p>
+
+                  {/* Skills */}
+                  {entry.skills?.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-gray-100 dark:border-gray-800">
+                      {entry.skills.slice(0, 4).map(skill => (
+                        <span
+                          key={skill}
+                          className="px-2 py-0.5 text-xs rounded-md bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Verification link, for certs with a public badge */}
+                {entry.verifyUrl && (
                   <a
-                    href={entry.driveUrl}
+                    href={entry.verifyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`View ${entry.title} certificate`}
-                    className="block relative overflow-hidden"
+                    aria-label={`Verify ${entry.title} on Credly`}
+                    className="mx-4 mb-2 mt-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold bg-gray-900 text-white dark:bg-white dark:text-gray-900 hover:opacity-90 transition-opacity"
                   >
-                    <img
-                      src={certImages[entry.image] ?? entry.image}
-                      alt={entry.title}
-                      className="w-full object-contain bg-gray-50 dark:bg-gray-900 transition-transform duration-500 group-hover:scale-[1.02]"
-                    />
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center gap-2">
-                        <ExternalLink size={28} className="text-white drop-shadow-lg" />
-                        <span className="text-white text-sm font-semibold tracking-wide drop-shadow-lg">View Certificate</span>
-                      </div>
-                    </div>
+                    <BadgeCheck size={13} />
+                    Verify on Credly
                   </a>
                 )}
 
-                {/* Card footer */}
-                <div className="px-4 py-3 flex items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <h3 className="text-xs font-bold text-gray-900 dark:text-white leading-snug truncate">
-                      {entry.title}
-                    </h3>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">
-                      {entry.organization} · {entry.issueDate}
-                    </p>
-                  </div>
-                  <span className="flex-shrink-0 px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600">
-                    {entry.category}
-                  </span>
-                </div>
+                {/* View button — bottom action */}
+                <a
+                  href={entry.driveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View ${entry.title} certificate`}
+                  className="mx-4 mb-4 mt-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-semibold text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-all duration-200"
+                >
+                  <ExternalLink size={13} />
+                  View Certificate
+                </a>
               </motion.div>
-            ))}
-          </div>
-        </motion.div>
+            )
+          })}
+        </div>
       </motion.div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/85 backdrop-blur-md"
+            onClick={() => setLightbox(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 16 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 16 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="relative w-full max-w-2xl"
+              role="dialog"
+              aria-modal="true"
+              aria-label={lightbox.title}
+              onClick={e => e.stopPropagation()}
+            >
+              {/* Close */}
+              <button
+                autoFocus
+                onClick={() => setLightbox(null)}
+                aria-label="Close preview"
+                className="absolute -top-3 -right-3 z-10 w-8 h-8 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shadow-xl"
+              >
+                <X size={14} />
+              </button>
+
+              {/* Image */}
+              <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                <img
+                  src={certImages[lightbox.image] ?? lightbox.image}
+                  alt={lightbox.title}
+                  className="w-full block"
+                />
+              </div>
+
+              {/* Info strip */}
+              <div className="mt-4 flex items-center justify-between flex-wrap gap-3 px-1">
+                <div>
+                  <p className="text-white font-semibold text-sm leading-snug">{lightbox.title}</p>
+                  <p className="text-gray-400 text-xs mt-0.5">{lightbox.organization} · {lightbox.issueDate}</p>
+                </div>
+                <a
+                  href={lightbox.driveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white text-gray-900 text-sm font-semibold hover:bg-gray-100 transition-colors shadow"
+                >
+                  <ExternalLink size={13} />
+                  Open Full
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

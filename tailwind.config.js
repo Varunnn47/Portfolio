@@ -9,7 +9,7 @@ export default {
     extend: {
       fontFamily: {
         heading: ['Inter', 'sans-serif'],
-        body: ['Roboto', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
       },
       colors: {
         'dark-custom': '#181818',

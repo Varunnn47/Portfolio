@@ -1,6 +1,13 @@
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Download, Github, Linkedin, Mail } from 'lucide-react'
 import { fadeIn, slideUp, staggerContainer } from '../utils/motionVariants'
+import { profile } from '../Data/portfolioData'
+
+const socials = [
+  { icon: Github, href: profile.github, label: 'GitHub' },
+  { icon: Linkedin, href: profile.linkedin, label: 'LinkedIn' },
+  { icon: Mail, href: `mailto:${profile.email}`, label: 'Email' },
+]
 
 const Hero = () => {
   return (
@@ -21,52 +28,86 @@ const Hero = () => {
             </motion.div>
 
             <motion.h1
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-gray-900 dark:text-white mb-4 md:mb-6 leading-tight font-bold"
+              className="text-5xl sm:text-6xl lg:text-7xl text-gray-900 dark:text-white mb-3 md:mb-4 leading-tight font-bold"
             >
-              <span className="text-black dark:text-white">Varun</span>
+              Varun Goud
             </motion.h1>
 
             <motion.p
               variants={fadeIn}
-              custom={1}
-              className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-6 md:mb-8 leading-relaxed"
+              className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-4 md:mb-6"
             >
-              I'm a dedicated student developer focused on building modern, user-centric, and data-driven applications. I enjoy creating clean, responsive interfaces and developing scalable backend systems while continuously learning new technologies.
+              AI/ML Engineer &amp; Full-Stack Developer
+            </motion.p>
+
+            <motion.p
+              variants={fadeIn}
+              custom={1}
+              className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6 md:mb-8 leading-relaxed"
+            >
+              I build AI-driven applications, REST APIs, and AI agents. Currently an AI/ML Engineer Intern at AETHRIZ and building the Masika Care app and website.
             </motion.p>
 
             <motion.div
               variants={fadeIn}
               custom={3}
-              className="flex flex-col sm:flex-row items-start gap-4"
+              className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4"
             >
               <motion.a
                 href="#projects"
-                className="btn-primary flex items-center gap-2 justify-center"
+                className="btn-primary"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 View Projects
                 <ArrowRight size={20} />
               </motion.a>
+              <motion.a
+                href={profile.resume}
+                download
+                className="btn-secondary"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Download Resume
+                <Download size={20} />
+              </motion.a>
+            </motion.div>
+
+            <motion.div variants={fadeIn} custom={4} className="flex items-center gap-3 mt-6">
+              {socials.map((social) => {
+                const Icon = social.icon
+                return (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <Icon size={18} />
+                  </motion.a>
+                )
+              })}
             </motion.div>
           </motion.div>
 
           {/* Right Content - Profile Image */}
-          <motion.div 
-            variants={slideUp} 
+          <motion.div
+            variants={slideUp}
             className="flex justify-center lg:justify-end order-2 lg:order-2"
           >
-            <div className="relative">
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl">
-                <img 
-                  src="./profile-photo.jpg" 
-                  alt="Varun Goud" 
-                  className="w-full h-full object-cover"
-                  onError={(e) => console.log('Image failed to load:', e.target.src)}
-                />
-              </div>
-              {/* Subtle glow background */}
-              <div className="absolute inset-0 rounded-full bg-white/20 blur-3xl -z-10 scale-125"></div>
+            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl">
+              <img
+                src="./profile-photo.jpg"
+                alt="Varun Goud"
+                width="320"
+                height="320"
+                className="w-full h-full object-cover"
+              />
             </div>
           </motion.div>
         </div>

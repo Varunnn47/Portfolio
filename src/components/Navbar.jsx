@@ -1,38 +1,39 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Home, User, Code2, FolderOpen, Trophy, Mail, Sun, Moon } from 'lucide-react'
+import { Home, User, Code2, FolderOpen, Trophy, Mail, Sun, Moon, GitCommit } from 'lucide-react'
 import { useTheme } from '../contexts/ThemeContext'
+
+const links = [
+  { label: 'Home', href: '#home', icon: Home },
+  { label: 'About', href: '#about', icon: User },
+  { label: 'Experience', href: '#experience', icon: Code2 },
+  { label: 'Projects', href: '#projects', icon: FolderOpen },
+  { label: 'Contributions', href: '#contributions', icon: GitCommit },
+  { label: 'Certifications', href: '#achievements', icon: Trophy },
+  { label: 'Contact', href: '#contact', icon: Mail }
+]
+
+const itemClass = 'group relative flex items-center justify-center w-9 h-9 min-[375px]:w-10 min-[375px]:h-10 sm:w-11 sm:h-11 rounded-full transition-all duration-200'
+
+const HoverLabel = ({ children }) => (
+  <span className="hidden sm:block absolute bottom-full mb-3 px-2 py-1 rounded-md text-xs font-medium whitespace-nowrap pointer-events-none opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity bg-gray-900 dark:bg-white text-white dark:text-gray-900">
+    {children}
+  </span>
+)
 
 const Navbar = () => {
   const { isDark, toggleTheme } = useTheme()
-  const [activeSections, setActiveSections] = useState(new Set())
-
-  const links = [
-    { label: 'Home', href: '#home', icon: Home },
-    { label: 'About', href: '#about', icon: User },
-    { label: 'Experience', href: '#experience', icon: Code2 },
-    { label: 'Projects', href: '#projects', icon: FolderOpen },
-    { label: 'Achievements', href: '#achievements', icon: Trophy },
-    { label: 'Contact', href: '#contact', icon: Mail }
-  ]
+  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
-    const sectionIds = ['home', 'about', 'experience', 'projects', 'achievements', 'contact']
-    const elements = sectionIds.map(id => document.getElementById(id)).filter(Boolean)
+    const elements = links.map(link => document.querySelector(link.href)).filter(Boolean)
 
+    // A thin band at mid-viewport, so exactly one section is active at a time
     const observer = new IntersectionObserver((entries) => {
-      setActiveSections(prev => {
-        const next = new Set(prev)
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            next.add(entry.target.id)
-          } else {
-            next.delete(entry.target.id)
-          }
-        })
-        return next
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActiveSection(entry.target.id)
       })
-    }, { threshold: 0.3 })
+    }, { rootMargin: '-50% 0px -50% 0px' })
 
     elements.forEach(el => observer.observe(el))
 
@@ -43,58 +44,52 @@ const Navbar = () => {
     e.preventDefault()
     const el = document.querySelector(href)
     if (el) {
-      const offset = 80
-      const top = el.offsetTop - offset
-      window.scrollTo({ top, behavior: 'smooth' })
+      window.scrollTo({ top: el.offsetTop, behavior: 'smooth' })
     }
   }
 
   return (
     <motion.nav
+      aria-label="Main"
       initial={{ y: 100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed bottom-8 left-0 right-0 flex justify-center z-50"
+      className="fixed bottom-3 sm:bottom-6 left-0 right-0 flex justify-center z-40 pointer-events-none"
     >
-      <div className={`flex items-center gap-1 sm:gap-3 md:gap-5 px-3 sm:px-5 md:px-8 py-2.5 md:py-4 rounded-full backdrop-blur-md border ${
-        isDark 
-          ? 'bg-dark-custom/80 border-gray-700' 
-          : 'bg-white/80 border-gray-200'
-      } shadow-lg`}>
+      <div className="pointer-events-auto flex items-center sm:gap-1 md:gap-2 px-1.5 sm:px-3 py-1.5 sm:py-2 rounded-full backdrop-blur-md border bg-white/80 border-gray-200 dark:bg-dark-custom/80 dark:border-gray-700 shadow-lg">
         {links.map((link) => {
           const IconComponent = link.icon
-          const isActive = activeSections.has(link.href.slice(1))
+          const isActive = activeSection === link.href.slice(1)
           return (
             <motion.a
               key={link.label}
               href={link.href}
               onClick={(e) => handleClick(e, link.href)}
-              className={`p-2 sm:p-2.5 md:p-3 rounded-full transition-all duration-200 ${
+              className={`${itemClass} ${
                 isActive
                   ? 'text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800'
                   : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
               }`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              title={link.label}
+              aria-label={link.label}
+              aria-current={isActive ? 'true' : undefined}
             >
-              <IconComponent size={17} className="sm:w-[18px] sm:h-[18px] md:w-[19px] md:h-[19px]" />
+              <IconComponent size={18} />
+              <HoverLabel>{link.label}</HoverLabel>
             </motion.a>
           )
         })}
-        
+
         <motion.button
           onClick={toggleTheme}
-          className={`p-2 sm:p-2.5 md:p-3 rounded-full transition-all duration-200 ${
-            isDark 
-              ? 'text-gray-400 hover:text-white hover:bg-gray-800' 
-              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-          }`}
+          className={`${itemClass} text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800`}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          title={isDark ? 'Light Mode' : 'Dark Mode'}
+          aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
         >
-          {isDark ? <Sun size={17} className="sm:w-[18px] sm:h-[18px]" /> : <Moon size={17} className="sm:w-[18px] sm:h-[18px]" />}
+          {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          <HoverLabel>{isDark ? 'Light mode' : 'Dark mode'}</HoverLabel>
         </motion.button>
       </div>
     </motion.nav>

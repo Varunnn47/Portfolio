@@ -1,24 +1,23 @@
 {
-  "name": "Portfolio - Full Stack Developer",
-  "short_name": "Portfolio",
-  "description": "Professional portfolio showcasing web development projects and skills",
+  "name": "Varun Goud - Portfolio",
+  "short_name": "Varun Goud",
+  "description": "AI/ML engineer and full-stack developer: projects, experience, certifications, and resume",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#2563eb",
-  "orientation": "portrait-primary",
+  "background_color": "#181818",
+  "theme_color": "#181818",
   "icons": [
     {
       "src": "./icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
       "src": "./icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     }
   ]
 }

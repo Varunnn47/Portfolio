@@ -1,6 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { MotionConfig } from 'framer-motion'
 
-import BackToTop from './components/BackToTop'
 import Toast from './components/Toast'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -8,6 +7,7 @@ import Projects from './components/Projects'
 import About from './components/About'
 import Experience from './components/Experience'
 import Achievements from './components/Achievements'
+import GitHubContributions from './components/GitHubContributions'
 
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -20,26 +20,24 @@ const App = () => {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-white dark:bg-dark-custom transition-colors">
+      <MotionConfig reducedMotion="user">
+        <div className="min-h-screen bg-white dark:bg-dark-custom transition-colors">
 
-        <Toast toasts={toasts} removeToast={removeToast} />
+          <Toast toasts={toasts} removeToast={removeToast} />
 
-        <Navbar />
-        <Routes>
-          <Route path="/" element={
-            <main>
-              <Hero />
-              <About />
-              <Experience />
-              <Projects />
-              <Achievements />
-              <Contact addToast={addToast} />
-            </main>
-          } />
-        </Routes>
-        <Footer />
-        <BackToTop />
-      </div>
+          <Navbar />
+          <main>
+            <Hero />
+            <About />
+            <Experience />
+            <Projects />
+            <GitHubContributions />
+            <Achievements />
+            <Contact addToast={addToast} />
+          </main>
+          <Footer />
+        </div>
+      </MotionConfig>
     </ThemeProvider>
   )
 }

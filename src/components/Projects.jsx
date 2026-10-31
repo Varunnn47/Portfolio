@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import { Github } from 'lucide-react'
+import { ExternalLink, Github } from 'lucide-react'
 import { fadeIn, scaleUp, staggerContainer } from '../utils/motionVariants'
-import { projects } from '../Data/mockData'
+import { projects } from '../Data/portfolioData'
 
 const Projects = () => {
   return (
@@ -14,11 +14,11 @@ const Projects = () => {
         className="container-custom"
       >
         <motion.div variants={fadeIn} className="text-center mb-16">
-          <h2 className="font-heading text-4xl md:text-5xl text-gray-900 dark:text-white mb-4">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900 dark:text-white mb-4 tracking-tight">
             Featured <span className="text-black dark:text-white">Projects</span>
           </h2>
           <p className="font-body text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
-            A selection of my recent work showcasing expertise in modern web development and design.
+            A selection of my recent AI and full-stack work.
           </p>
         </motion.div>
 
@@ -28,7 +28,7 @@ const Projects = () => {
               key={project.id}
               variants={scaleUp}
               custom={i}
-              className="relative bg-white dark:bg-dark-custom border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 group cursor-pointer"
+              className="relative bg-white dark:bg-dark-custom border border-gray-200 dark:border-gray-700 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 group"
               whileHover={{ 
                 scale: 1.05, 
                 y: -10,
@@ -47,7 +47,7 @@ const Projects = () => {
                   className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  aria-label="View GitHub repository"
+                  aria-label={`${project.title} source code on GitHub`}
                 >
                   <Github size={20} />
                 </motion.a>
@@ -67,6 +67,19 @@ const Projects = () => {
                   </span>
                 ))}
               </div>
+
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.title} live demo`}
+                  className="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-gray-900 dark:text-white hover:underline"
+                >
+                  <ExternalLink size={16} />
+                  Live Demo
+                </a>
+              )}
             </motion.div>
           ))}
         </div>
