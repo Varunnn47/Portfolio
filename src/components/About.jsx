@@ -6,7 +6,7 @@ import { profile, skillGroups } from '../Data/portfolioData'
 const DEVICON_BASE = 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons'
 
 const aboutLinks = [
-  { icon: FileText, href: profile.resume, label: 'Resume', download: true },
+  { icon: FileText, href: profile.resume, label: 'Resume' },
   { icon: Github, href: profile.github, label: 'GitHub' },
   { icon: Linkedin, href: profile.linkedin, label: 'LinkedIn' },
 ]
@@ -56,16 +56,13 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-10 items-start max-w-5xl mx-auto mb-12 md:mb-16 px-4">
           <motion.div variants={slideUp} className="space-y-4 text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-300">
             <p>
-              Hi, I'm Varun. I build AI products end to end, from the model and backend to the app people use.
+              Hi, I'm Varun — an AI/ML and full-stack engineer who likes building AI products that work in the real world, from the model and backend to the app people use.
             </p>
             <p>
-              <span className="font-semibold text-gray-900 dark:text-white">Right now:</span> I'm developing health and food-scanning models at AETHRIZ, and building the mobile app and website for Masika Care, a deep-tech menstrual health startup.
+              <span className="font-semibold text-gray-900 dark:text-white">What I do —</span> Currently developing health and food-scanning AI models at AETHRIZ, and building the mobile app and website for Masika Care, working across Python, Flutter, Supabase, and LLM APIs.
             </p>
             <p>
-              <span className="font-semibold text-gray-900 dark:text-white">What I've built:</span> Patient and doctor roles, appointment booking, and real-time chat at Masika Care, plus a security audit before closed beta. On my own, a research paper summarizer with semantic search and a chatbot where a judge model picks the better of two LLM answers.
-            </p>
-            <p>
-              <span className="font-semibold text-gray-900 dark:text-white">What's next:</span> Going deeper into AI agents and intelligent systems.
+              <span className="font-semibold text-gray-900 dark:text-white">What's next —</span> Going deeper into AI agents and intelligent systems.
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               {aboutLinks.map((link) => {
